@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Button, Form, Col, Row, Container, Card, Alert, Image } from 'react-bootstrap';
 
 function StudentInfo() {
@@ -8,7 +8,7 @@ function StudentInfo() {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch(`/data/${studentCode}/info.json`);
+      const response = await fetch(`http://localhost:3000/api/public/student/${studentCode}`);
       if (!response.ok) {
         throw new Error('Student not found');
       }
@@ -19,6 +19,7 @@ function StudentInfo() {
     } catch (err) {
       setStudent(null);
       setError('El estudiante no está registrado');
+      console.error(err)
     }
   };
 
